@@ -1,17 +1,24 @@
 import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import './App.css'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import { useAuth } from './contexts/AuthContext'
+import UserMenu from './components/UserMenu'
+import logo from './assets/Sirlogo.png'
 import uofuLogo from './assets/uofu copy.png'
 import ldsbcLogo from './assets/LDSBC copy.png'
 import photographyIcon from './assets/photography copy.png'
 import webIcon from './assets/web copy.png'
 import videographyIcon from './assets/videography.png'
+import designIcon from './assets/design copy.png'
 import computer2Image from './assets/computer2 copy.png'
 import computer1Image from './assets/computer1 copy.png'
 import pricingImage from './assets/pricingimage copy.png'
 
 function App() {
+  const { currentUser, userRole, hasRole } = useAuth()
+  const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
   const [typewriterText, setTypewriterText] = useState('')
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
@@ -159,7 +166,9 @@ function App() {
       {/* Navigation */}
       <nav className="navbar">
         <div className="nav-container">
-          <div className="logo">PORTFOLIO</div>
+          <div className="logo">
+            <img src={logo} alt="Portfolio Logo" style={{ height: '160px', width: 'auto' }} />
+          </div>
           <ul className="nav-menu">
             <li><a href="#home" onClick={() => scrollToSection('home')}>Home</a></li>
             <li><a href="#services" onClick={() => scrollToSection('services')}>Services</a></li>
@@ -172,6 +181,13 @@ function App() {
               <span className="phone-icon">📞</span>
               <span className="phone-number">1 385 515 2421</span>
             </div>
+            {currentUser ? (
+              <UserMenu />
+            ) : (
+              <div className="nav-auth-buttons">
+                <Link to="/login" className="btn-nav-login">Login</Link>
+              </div>
+            )}
             <button 
               className="menu-toggle" 
               onClick={() => setMenuOpen(!menuOpen)}
@@ -190,6 +206,14 @@ function App() {
             <a href="#github" onClick={() => scrollToSection('github')}>Github</a>
             <a href="#about" onClick={() => scrollToSection('about')}>About Me</a>
             <a href="#contact" onClick={() => scrollToSection('contact')}>Contact Me</a>
+            {currentUser ? (
+              <>
+                <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+                {hasRole('admin') && <Link to="/admin" onClick={() => setMenuOpen(false)}>Admin</Link>}
+              </>
+            ) : (
+              <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+            )}
           </div>
         )}
       </nav>
@@ -243,29 +267,10 @@ function App() {
           <div className="services-grid">
             <div className="service-card">
               <div className="service-icon">
-                <img 
-                  src={photographyIcon} 
-                  alt="Photography" 
-                  style={{ width: '200px', height: '200px', objectFit: 'contain', cursor: 'pointer' }}
-                  onClick={() => window.open("https://sirnetz.com/index.php/photography-2/", "_blank")}
-                />
-              </div>
-              <h3>Photography</h3>
-              <p>Capturing compelling visual stories and professional imagery for your brand.</p>
-              <ul>
-                <li>Landscape</li>
-                <li>Commercial</li>
-                <li>Real Estate</li>
-                <li>Special Events</li>
-              </ul>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">
-                <img 
-                  src={webIcon} 
-                  alt="Frontend Development" 
-                  style={{ width: '200px', height: '200px', objectFit: 'contain', cursor: 'pointer' }}
-                  onClick={() => window.open("https://sirnetz.com/index.php/web-development/", "_blank")}
+                <img
+                  src={webIcon}
+                  alt="Frontend Development"
+                  style={{ width: '200px', height: '200px', objectFit: 'contain' }}
                 />
               </div>
               <h3>Frontend Development</h3>
@@ -278,14 +283,65 @@ function App() {
                 <li>WordPress Content Management</li>
                 <li>Photo/Video Content</li>
               </ul>
+              <button
+                className="view-gallery-btn"
+                onClick={() => navigate('/projects')}
+              >
+                View Projects →
+              </button>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">
+                <img 
+                  src={photographyIcon} 
+                  alt="Photography" 
+                  style={{ width: '200px', height: '200px', objectFit: 'contain' }}
+                />
+              </div>
+              <h3>Photography</h3>
+              <p>Capturing compelling visual stories and professional imagery for your brand.</p>
+              <ul>
+                <li>Landscape</li>
+                <li>Commercial</li>
+                <li>Real Estate</li>
+                <li>Special Events</li>
+              </ul>
+              <button
+                className="view-gallery-btn"
+                onClick={() => navigate('/photography')}
+              >
+                View Gallery →
+              </button>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">
+                <img 
+                  src={designIcon} 
+                  alt="Consulting" 
+                  style={{ width: '200px', height: '200px', objectFit: 'contain' }}
+                />
+              </div>
+              <h3>Consulting</h3>
+              <p>Providing expert advice on design strategies and technical implementations.</p>
+              <ul>
+                <li>Assessment</li>
+                <li>Strategic Planning</li>
+                <li>Execution</li>
+                <li>Payment Options</li>
+              </ul>
+              <button
+                className="view-gallery-btn"
+                onClick={() => navigate('/consulting')}
+              >
+                Get a Consultation →
+              </button>
             </div>
             <div className="service-card">
               <div className="service-icon">
                 <img 
                   src={videographyIcon} 
                   alt="Videography" 
-                  style={{ width: '200px', height: '200px', objectFit: 'contain', cursor: 'pointer' }}
-                  onClick={() => window.open("https://sirnetz.com/index.php/commerical-videos/", "_blank")}
+                  style={{ width: '200px', height: '200px', objectFit: 'contain' }}
                 />
               </div>
               <h3>Videography</h3>
@@ -296,23 +352,12 @@ function App() {
                 <li>Entertainment</li>
                 <li>Informational</li>
               </ul>
-            </div>
-            <div className="service-card">
-              <div 
-                className="service-icon" 
-                style={{ cursor: 'pointer' }}
-                onClick={() => window.open("https://sirnetz.com/index.php/web-development/", "_blank")}
+              <button
+                className="view-gallery-btn"
+                onClick={() => navigate('/videos')}
               >
-                💼
-              </div>
-              <h3>Consulting</h3>
-              <p>Providing expert advice on design strategies and technical implementations.</p>
-              <ul>
-                <li>Assessment</li>
-                <li>Strategic Planning</li>
-                <li>Execution</li>
-                <li>Payment Options</li>
-              </ul>
+                See Videos →
+              </button>
             </div>
           </div>
         </div>
@@ -357,13 +402,22 @@ function App() {
       {/* Resume Summary Section */}
       <section id="resume" className="resume-section">
         <div className="section-container">
-          <h2 className="section-title" data-aos="fade-up" data-aos-duration="1000">A summary of My Resume</h2>
+          <h2 className="section-title" data-aos="fade-up" data-aos-duration="1000">Professional Journey</h2>
           
           <div className="resume-content">
             {/* Education Column */}
             <div className="resume-column">
               <h3 className="resume-column-title">My Education</h3>
               <div className="timeline">
+                <div className="timeline-item">
+                  <div className="timeline-content">
+                    <h4>Web & Graphic Design Certificate 2020 (900-Hour Program)</h4>
+                    <p className="timeline-meta">Davis Technical College — Kaysville, UT / 2020</p>
+                    <p className="timeline-description">
+                      Completed a comprehensive 900-hour program in web and graphic design.
+                    </p>
+                  </div>
+                </div>
                 <div className="timeline-item">
                   <div className="timeline-content">
                     <h4>Bachelors of Science in Communications With Emphasis in Business Technology</h4>
@@ -391,19 +445,19 @@ function App() {
               <div className="timeline">
                 <div className="timeline-item">
                   <div className="timeline-content">
-                    <h4>Vice President</h4>
-                    <p className="timeline-meta">Red Star Transportation / Recent</p>
+                    <h4>Transportation Director – Information Technology</h4>
+                    <p className="timeline-meta">Park City School District – Park City, UT / 05/2025 – Present</p>
                     <p className="timeline-description">
-                      Successfully integrated multifaceted expertise as marketing director, financial strategist, and web developer.
+                      Leading transportation operations and technology initiatives for the district.
                     </p>
                   </div>
                 </div>
                 <div className="timeline-item">
                   <div className="timeline-content">
-                    <h4>Senior Content Development Manager</h4>
-                    <p className="timeline-meta">Agência de Marketing Digital / 2017 - 2018</p>
+                    <h4>Vice President</h4>
+                    <p className="timeline-meta">Red Star Transportation / 2017 - 2023</p>
                     <p className="timeline-description">
-                      Applied diverse skill set contributing to the agency's digital marketing initiatives in Lisbon, Portugal.
+                      Successfully integrated multifaceted expertise as marketing director, financial strategist, and web developer.
                     </p>
                   </div>
                 </div>
@@ -580,14 +634,14 @@ function App() {
             </div>
           </div>
 
-          {/* Download CV Button */}
+          {/* Download Resume Button */}
           <div className="download-cv-container">
             <a 
-              href="/New Resume.pdf" 
-              download="Alejandro_Abonnanzieri_Resume.pdf"
+              href="/New Resume2026.docx"
+              download="Alejandro_Abonnanzieri_Resume.docx"
               className="download-cv-btn"
             >
-              Download CV
+              Resume
             </a>
           </div>
         </div>
@@ -639,15 +693,21 @@ function App() {
             <div className="github-stats">
               <div className="stat-card">
                 <h3>Repositories</h3>
-                <p className="stat-number">50+</p>
+                <svg className="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="40" height="40" aria-hidden="true">
+                  <path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Z"/>
+                </svg>
               </div>
               <div className="stat-card">
                 <h3>Contributions</h3>
-                <p className="stat-number">100</p>
+                <svg className="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="40" height="40" aria-hidden="true">
+                  <path d="M6 2a.75.75 0 0 1 .696.471L10 10.731l1.304-3.26A.75.75 0 0 1 12 7h3.25a.75.75 0 0 1 0 1.5h-2.742l-1.812 4.528a.75.75 0 0 1-1.392 0L6 4.77 4.696 8.03A.75.75 0 0 1 4 8.5H.75a.75.75 0 0 1 0-1.5h2.742Z"/>
+                </svg>
               </div>
               <div className="stat-card">
                 <h3>Languages</h3>
-                <p className="stat-number">7</p>
+                <svg className="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="40" height="40" aria-hidden="true">
+                  <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM1.75 1.5a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25ZM5.22 8.53a.75.75 0 0 1-1.06 1.06L1.97 7.4a.75.75 0 0 1 0-1.06L4.16 4.16a.75.75 0 0 1 1.06 1.06L3.31 6.87Zm6.62 0 2.19-2.19a.75.75 0 0 0-1.06-1.06L10.78 7.4a.75.75 0 0 0 0 1.06l2.19 2.19a.75.75 0 0 0 1.06-1.06ZM8.78 4.21a.75.75 0 0 0-1.44.42l1.5 5a.75.75 0 0 0 1.44-.42Z"/>
+                </svg>
               </div>
             </div>
             <a 
