@@ -3,9 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import './App.css'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import { useAuth } from './contexts/AuthContext'
-import UserMenu from './components/UserMenu'
-import logo from './assets/Sirlogo.png'
+import logo from './assets/sirlogo2.png'
 import uofuLogo from './assets/uofu copy.png'
 import ldsbcLogo from './assets/LDSBC copy.png'
 import photographyIcon from './assets/photography copy.png'
@@ -17,7 +15,6 @@ import computer1Image from './assets/computer1 copy.png'
 import pricingImage from './assets/pricingimage copy.png'
 
 function App() {
-  const { currentUser, userRole, hasRole } = useAuth()
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
   const [typewriterText, setTypewriterText] = useState('')
@@ -167,7 +164,7 @@ function App() {
       <nav className="navbar">
         <div className="nav-container">
           <div className="logo">
-            <img src={logo} alt="Portfolio Logo" style={{ height: '160px', width: 'auto' }} />
+            <img src={logo} alt="Portfolio Logo" className="logo-img" />
           </div>
           <ul className="nav-menu">
             <li><a href="#home" onClick={() => scrollToSection('home')}>Home</a></li>
@@ -181,13 +178,6 @@ function App() {
               <span className="phone-icon">📞</span>
               <span className="phone-number">1 385 515 2421</span>
             </div>
-            {currentUser ? (
-              <UserMenu />
-            ) : (
-              <div className="nav-auth-buttons">
-                <Link to="/login" className="btn-nav-login">Login</Link>
-              </div>
-            )}
             <button 
               className="menu-toggle" 
               onClick={() => setMenuOpen(!menuOpen)}
@@ -206,14 +196,6 @@ function App() {
             <a href="#github" onClick={() => scrollToSection('github')}>Github</a>
             <a href="#about" onClick={() => scrollToSection('about')}>About Me</a>
             <a href="#contact" onClick={() => scrollToSection('contact')}>Contact Me</a>
-            {currentUser ? (
-              <>
-                <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
-                {hasRole('admin') && <Link to="/admin" onClick={() => setMenuOpen(false)}>Admin</Link>}
-              </>
-            ) : (
-              <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
-            )}
           </div>
         )}
       </nav>
@@ -269,11 +251,11 @@ function App() {
               <div className="service-icon">
                 <img
                   src={webIcon}
-                  alt="Frontend Development"
+                  alt="Web Development"
                   style={{ width: '200px', height: '200px', objectFit: 'contain' }}
                 />
               </div>
-              <h3>Frontend Development</h3>
+              <h3>Web Development</h3>
               <p>Building responsive and interactive user interfaces with modern frameworks.</p>
               <ul>
                 <li>Mobile Service Compatible</li>
@@ -637,7 +619,7 @@ function App() {
           {/* Download Resume Button */}
           <div className="download-cv-container">
             <a 
-              href="/New Resume2026.docx"
+              href={`${import.meta.env.BASE_URL}New Resume2026.docx`}
               download="Alejandro_Abonnanzieri_Resume.docx"
               className="download-cv-btn"
             >

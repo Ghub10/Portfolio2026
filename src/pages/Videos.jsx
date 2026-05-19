@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Videos.css'
-import logo from '../assets/Sirlogo.png'
+import logo from '../assets/sirlogo2.png'
 import thumbWebDev  from '../assets/Thumbnails copy/WebDevelopmentThumbnail.png'
 import thumbFitness  from '../assets/Thumbnails copy/Fitness.png'
 import thumbAfterFx  from '../assets/Thumbnails copy/AfterEffectsThumbnail.png'
@@ -28,7 +28,7 @@ const Videos = () => {
       <nav className="vid-nav">
         <div className="vid-nav-inner">
           <Link to="/" className="vid-logo">
-            <img src={logo} alt="Sirnetz Logo" />
+            <img src={logo} alt="Sirnetz Logo" className="logo-img" />
           </Link>
           <div className="vid-nav-links">
             <Link to="/">← Back to Portfolio</Link>

@@ -1,0 +1,14 @@
+SiteGround Deployment Instructions
+==================================
+
+Upload ALL contents of this /deploy folder to your SiteGround public_html folder.
+
+Include:
+- index.html (root)
+- .htaccess
+- assets/ folder
+- New Resume2026.docx (and other resume files if needed)
+- Images/ folder
+- vite.svg (favicon)
+
+The .htaccess file enables client-side routing so /photography, /projects, /videos, /consulting etc. work correctly.

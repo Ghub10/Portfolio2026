@@ -34,9 +34,25 @@
   justify-content: space-between;
 }
 
-.proj-logo img {
+.proj-logo .logo-img-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.proj-logo .logo-img {
   height: 150px;
   width: auto;
+  display: block;
+}
+
+.proj-logo .logo-s-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 26%;
+  width: 13%;
+  background: rgba(255, 255, 255, 0.98);
+  pointer-events: none;
 }
 
 .proj-nav-links a {

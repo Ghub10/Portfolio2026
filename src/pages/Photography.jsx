@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Photography.css'
-import logo from '../assets/Sirlogo.png'
+import logo from '../assets/sirlogo2.png'
 import pic1  from '../assets/TRA/San Francisco copy.png'
 import pic2  from '../assets/TRA/Times Square copy.jpeg'
 import pic5  from '../assets/TRA/pic 5 copy.png'
@@ -70,7 +70,7 @@ const Photography = () => {
       <nav className="pg-nav">
         <div className="pg-nav-inner">
           <Link to="/" className="pg-logo">
-            <img src={logo} alt="Sirnetz Logo" />
+            <img src={logo} alt="Sirnetz Logo" className="logo-img" />
           </Link>
           <div className="pg-nav-links">
             <Link to="/">← Back to Portfolio</Link>

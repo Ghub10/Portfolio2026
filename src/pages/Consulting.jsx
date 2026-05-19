@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Consulting.css'
-import logo from '../assets/Sirlogo.png'
+import logo from '../assets/sirlogo2.png'
 import student from '../assets/conimages/student.png'
 import planetBookCover from '../assets/conimages/PlanetBookCover.png'
 import busImage from '../assets/conimages/Bus-Image.png'
@@ -68,7 +68,7 @@ const Consulting = () => {
       <nav className="con-nav">
         <div className="con-nav-inner">
           <Link to="/" className="con-logo">
-            <img src={logo} alt="Sirnetz Logo" />
+            <img src={logo} alt="Sirnetz Logo" className="logo-img" />
           </Link>
           <div className="con-nav-links">
             <Link to="/">← Back to Portfolio</Link>

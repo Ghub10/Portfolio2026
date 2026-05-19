@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Projects.css'
-import logo from '../assets/Sirlogo.png'
+import logo from '../assets/sirlogo2.png'
 import redStar from '../assets/IM/redstartransportation copy.png'
 import webProject from '../assets/IM/iStock-1181696848 copy 2.jpg'
 import chays from '../assets/IM/chaysalterations copy.png'
+import restaurantMenu from '../assets/Restaurant Menu.png'
 
 const projects = [
   { id: 1, label: 'Red Star Transportation', src: redStar,    url: 'https://redstartransportation.com/' },
   { id: 2, label: 'Web Project',             src: webProject },
   { id: 3, label: "Chay's Alterations",      src: chays },
+  { id: 4, label: 'Restaurant Menu',         src: restaurantMenu },
 ]
 
 const Projects = () => {
@@ -30,7 +32,7 @@ const Projects = () => {
       <nav className="proj-nav">
         <div className="proj-nav-inner">
           <Link to="/" className="proj-logo">
-            <img src={logo} alt="Sirnetz Logo" />
+            <img src={logo} alt="Sirnetz Logo" className="logo-img" />
           </Link>
           <div className="proj-nav-links">
             <Link to="/">← Back to Portfolio</Link>
@@ -41,7 +43,7 @@ const Projects = () => {
       {/* Hero */}
       <header className="proj-hero">
         <div className="proj-hero-inner">
-          <p className="proj-hero-tag">Frontend Development</p>
+          <p className="proj-hero-tag">Web Development</p>
           <h1 className="proj-hero-title">Projects</h1>
         </div>
         <div className="proj-hero-bar" />
