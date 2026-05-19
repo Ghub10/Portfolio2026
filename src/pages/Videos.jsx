@@ -1,26 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Videos.css'
 import logo from '../assets/sirlogo2.png'
-import thumbWebDev  from '../assets/Thumbnails copy/WebDevelopmentThumbnail.png'
-import thumbFitness  from '../assets/Thumbnails copy/Fitness.png'
-import thumbAfterFx  from '../assets/Thumbnails copy/AfterEffectsThumbnail.png'
-import thumbDance    from '../assets/Thumbnails copy/DanceThumbnail.png'
-
-const videos = [
-  { id: 1,  vimeoId: '538869315',  label: 'Web Development',           thumbnail: thumbWebDev  },
-  { id: 2,  vimeoId: '523344163',  label: 'Fitness',                   thumbnail: thumbFitness },
-  { id: 3,  vimeoId: '552132752',  label: 'After Effects',             thumbnail: thumbAfterFx },
-  { id: 4,  vimeoId: '520780833',  label: 'Dance',                     thumbnail: thumbDance   },
-  { id: 5,  vimeoId: '1096817983', label: 'Redneck Mud',               thumbnail: null },
-  { id: 6,  vimeoId: '454437639',  label: 'Red Star Transportation',   thumbnail: null },
-  { id: 7,  vimeoId: '549420092',  label: 'Westerner',                 thumbnail: null },
-  { id: 8,  vimeoId: '562590545',  label: 'Wedding — Bill & Lucy',     thumbnail: null },
-  { id: 9,  vimeoId: '562597775',  label: 'Wedding — Chelyse & Josh',  thumbnail: null },
-]
+import { supabase } from '../config/supabase'
+import { usePageView } from '../hooks/usePageView'
 
 const Videos = () => {
+  const [videos, setVideos]         = useState([])
+  const [loading, setLoading]       = useState(true)
   const [activeVimeoId, setActiveVimeoId] = useState(null)
+
+  usePageView('/videos')
+
+  useEffect(() => {
+    supabase
+      .from('gallery_items')
+      .select('*')
+      .eq('type', 'video')
+      .eq('published', true)
+      .order('sort_order', { ascending: true })
+      .then(({ data }) => {
+        setVideos(data || [])
+        setLoading(false)
+      })
+  }, [])
 
   return (
     <div className="vid-page">
@@ -46,39 +49,43 @@ const Videos = () => {
 
       {/* Gallery */}
       <main className="vid-main">
-        <div className="vid-grid">
-          {videos.map((video, index) => (
-            <div
-              key={video.id}
-              className="vid-card"
-              style={{ animationDelay: `${index * 80}ms` }}
-            >
-              {video.thumbnail ? (
-                <button
-                  className="vid-thumb-btn"
-                  onClick={() => setActiveVimeoId(video.vimeoId)}
-                  aria-label={`Play ${video.label}`}
-                >
-                  <img src={video.thumbnail} alt={video.label} className="vid-thumb-img" />
-                  <div className="vid-play-overlay">
-                    <span className="vid-play-icon">▶</span>
+        {loading ? (
+          <div className="vid-loading">Loading...</div>
+        ) : (
+          <div className="vid-grid">
+            {videos.map((video, index) => (
+              <div
+                key={video.id}
+                className="vid-card"
+                style={{ animationDelay: `${index * 80}ms` }}
+              >
+                {video.image_url ? (
+                  <button
+                    className="vid-thumb-btn"
+                    onClick={() => setActiveVimeoId(video.vimeo_id)}
+                    aria-label={`Play ${video.title}`}
+                  >
+                    <img src={video.image_url} alt={video.title} className="vid-thumb-img" />
+                    <div className="vid-play-overlay">
+                      <span className="vid-play-icon">▶</span>
+                    </div>
+                  </button>
+                ) : (
+                  <div className="vid-embed-wrapper">
+                    <iframe
+                      src={`https://player.vimeo.com/video/${video.vimeo_id}`}
+                      title={video.title}
+                      frameBorder="0"
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowFullScreen
+                    />
                   </div>
-                </button>
-              ) : (
-                <div className="vid-embed-wrapper">
-                  <iframe
-                    src={`https://player.vimeo.com/video/${video.vimeoId}`}
-                    title={video.label}
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              )}
-              <p className="vid-label">{video.label}</p>
-            </div>
-          ))}
-        </div>
+                )}
+                <p className="vid-label">{video.title}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </main>
 
       {/* Lightbox */}

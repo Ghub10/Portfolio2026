@@ -1,57 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Consulting.css'
 import logo from '../assets/sirlogo2.png'
-import student from '../assets/conimages/student.png'
-import planetBookCover from '../assets/conimages/PlanetBookCover.png'
-import busImage from '../assets/conimages/Bus-Image.png'
-import hawaiianPamphlet from '../assets/conimages/Hawaiian-pamphlet.png'
-import halloween from '../assets/conimages/halloween.png'
-import red from '../assets/conimages/red.png'
-import watercolor from '../assets/conimages/Watercolor.png'
-import hiring from '../assets/conimages/Hiring.png'
-import volendam from '../assets/conimages/Volendam-copy.png'
-import cincoDeMayo from '../assets/conimages/CindoDeMayo.png'
-import bigBites from '../assets/conimages/BigBitesHero-150x150.png'
-import energy from '../assets/conimages/energy.png'
-import bus from '../assets/conimages/bus.png'
-import redstarLogo from '../assets/conimages/Redstarlogo.png'
-import magazine from '../assets/conimages/magazine.png'
-import climbing from '../assets/conimages/climbing.png'
-import pencils from '../assets/conimages/pencils.png'
-import frontPage from '../assets/conimages/New-Front_page-copy-1024x614.png'
-import kidonbus from '../assets/conimages/Kidonbus.png'
-import universalLogo from '../assets/conimages/univeral-transportation-logo-300x104.png'
-import facemask from '../assets/conimages/facemask.png'
-import outdoors from '../assets/conimages/Outdoors.png'
-
-const conImages = [
-  { id: 1,  label: 'Student',                  src: student },
-  { id: 2,  label: 'Planet Book Cover',         src: planetBookCover },
-  { id: 3,  label: 'Bus Image',                 src: busImage },
-  { id: 4,  label: 'Hawaiian Pamphlet',         src: hawaiianPamphlet },
-  { id: 5,  label: 'Halloween',                 src: halloween },
-  { id: 6,  label: 'Red',                       src: red },
-  { id: 7,  label: 'Watercolor',                src: watercolor },
-  { id: 8,  label: 'Hiring',                    src: hiring },
-  { id: 9,  label: 'Volendam',                  src: volendam },
-  { id: 10, label: 'Cinco de Mayo',             src: cincoDeMayo },
-  { id: 11, label: 'Big Bites Hero',            src: bigBites },
-  { id: 12, label: 'Energy',                    src: energy },
-  { id: 13, label: 'Bus',                       src: bus },
-  { id: 14, label: 'Red Star Logo',             src: redstarLogo },
-  { id: 15, label: 'Magazine',                  src: magazine },
-  { id: 16, label: 'Climbing',                  src: climbing },
-  { id: 17, label: 'Pencils',                   src: pencils },
-  { id: 18, label: 'Front Page',                src: frontPage },
-  { id: 19, label: 'Kid on Bus',                src: kidonbus },
-  { id: 20, label: 'Universal Transportation',  src: universalLogo },
-  { id: 21, label: 'Face Mask',                 src: facemask },
-  { id: 22, label: 'Outdoors',                  src: outdoors },
-]
+import { supabase } from '../config/supabase'
+import { usePageView } from '../hooks/usePageView'
 
 const Consulting = () => {
-  const [lightbox, setLightbox] = useState(null)
+  const [conImages, setConImages] = useState([])
+  const [loading, setLoading]     = useState(true)
+  const [lightbox, setLightbox]   = useState(null)
+
+  usePageView('/consulting')
+
+  useEffect(() => {
+    supabase
+      .from('gallery_items')
+      .select('*')
+      .eq('type', 'consulting')
+      .eq('published', true)
+      .order('sort_order', { ascending: true })
+      .then(({ data }) => {
+        setConImages(data || [])
+        setLoading(false)
+      })
+  }, [])
 
   const openLightbox  = (item) => setLightbox(item)
   const closeLightbox = () => setLightbox(null)
@@ -87,19 +59,23 @@ const Consulting = () => {
 
       {/* Gallery */}
       <main className="con-main">
-        <div className="con-grid">
-          {conImages.map((item, index) => (
-            <button
-              key={item.id}
-              className="con-card"
-              style={{ animationDelay: `${index * 60}ms` }}
-              onClick={() => openLightbox(item)}
-              aria-label={`View ${item.label}`}
-            >
-              <img src={item.src} alt={item.label} className="con-card-img" />
-            </button>
-          ))}
-        </div>
+        {loading ? (
+          <div className="con-loading">Loading...</div>
+        ) : (
+          <div className="con-grid">
+            {conImages.map((item, index) => (
+              <button
+                key={item.id}
+                className="con-card"
+                style={{ animationDelay: `${index * 60}ms` }}
+                onClick={() => openLightbox(item)}
+                aria-label={`View ${item.title}`}
+              >
+                <img src={item.image_url} alt={item.title} className="con-card-img" />
+              </button>
+            ))}
+          </div>
+        )}
       </main>
 
       {/* Lightbox */}
@@ -109,9 +85,9 @@ const Consulting = () => {
             <button className="con-lb-close" onClick={closeLightbox} aria-label="Close">✕</button>
             <button className="con-lb-prev" onClick={() => navigateLightbox(-1)} aria-label="Previous">‹</button>
             <button className="con-lb-next" onClick={() => navigateLightbox(1)} aria-label="Next">›</button>
-            <img src={lightbox.src} alt={lightbox.label} className="con-lb-img" />
+            <img src={lightbox.image_url} alt={lightbox.title} className="con-lb-img" />
             <div className="con-lb-caption">
-              <span className="con-lb-label">{lightbox.label}</span>
+              <span className="con-lb-label">{lightbox.title}</span>
             </div>
           </div>
         </div>

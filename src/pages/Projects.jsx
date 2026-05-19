@@ -1,21 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Projects.css'
 import logo from '../assets/sirlogo2.png'
-import redStar from '../assets/IM/redstartransportation copy.png'
-import webProject from '../assets/IM/iStock-1181696848 copy 2.jpg'
-import chays from '../assets/IM/chaysalterations copy.png'
-import restaurantMenu from '../assets/Restaurant Menu.png'
-
-const projects = [
-  { id: 1, label: 'Red Star Transportation', src: redStar,    url: 'https://redstartransportation.com/' },
-  { id: 2, label: 'Web Project',             src: webProject },
-  { id: 3, label: "Chay's Alterations",      src: chays },
-  { id: 4, label: 'Restaurant Menu',         src: restaurantMenu },
-]
+import { supabase } from '../config/supabase'
+import { usePageView } from '../hooks/usePageView'
 
 const Projects = () => {
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading]   = useState(true)
   const [lightbox, setLightbox] = useState(null)
+
+  usePageView('/projects')
+
+  useEffect(() => {
+    supabase
+      .from('gallery_items')
+      .select('*')
+      .eq('type', 'project')
+      .eq('published', true)
+      .order('sort_order', { ascending: true })
+      .then(({ data }) => {
+        setProjects(data || [])
+        setLoading(false)
+      })
+  }, [])
 
   const openLightbox  = (project) => setLightbox(project)
   const closeLightbox = () => setLightbox(null)
@@ -51,19 +59,25 @@ const Projects = () => {
 
       {/* Gallery */}
       <main className="proj-main">
-        <div className="proj-grid">
-          {projects.map((project, index) => (
-            <button
-              key={project.id}
-              className="proj-card"
-              style={{ animationDelay: `${index * 80}ms` }}
-              onClick={() => project.url ? window.open(project.url, '_blank', 'noopener,noreferrer') : openLightbox(project)}
-              aria-label={`View ${project.label}`}
-            >
-              <img src={project.src} alt={project.label} className="proj-card-img" />
-            </button>
-          ))}
-        </div>
+        {loading ? (
+          <div className="proj-loading">Loading...</div>
+        ) : (
+          <div className="proj-grid">
+            {projects.map((project, index) => (
+              <button
+                key={project.id}
+                className="proj-card"
+                style={{ animationDelay: `${index * 80}ms` }}
+                onClick={() => project.external_url
+                  ? window.open(project.external_url, '_blank', 'noopener,noreferrer')
+                  : openLightbox(project)}
+                aria-label={`View ${project.title}`}
+              >
+                <img src={project.image_url} alt={project.title} className="proj-card-img" />
+              </button>
+            ))}
+          </div>
+        )}
       </main>
 
       {/* Lightbox */}
@@ -73,9 +87,9 @@ const Projects = () => {
             <button className="proj-lb-close" onClick={closeLightbox} aria-label="Close">✕</button>
             <button className="proj-lb-prev" onClick={() => navigateLightbox(-1)} aria-label="Previous">‹</button>
             <button className="proj-lb-next" onClick={() => navigateLightbox(1)} aria-label="Next">›</button>
-            <img src={lightbox.src} alt={lightbox.label} className="proj-lb-img" />
+            <img src={lightbox.image_url} alt={lightbox.title} className="proj-lb-img" />
             <div className="proj-lb-caption">
-              <span className="proj-lb-label">{lightbox.label}</span>
+              <span className="proj-lb-label">{lightbox.title}</span>
             </div>
           </div>
         </div>
