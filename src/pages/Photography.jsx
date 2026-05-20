@@ -1,29 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Photography.css'
 import logo from '../assets/sirlogo2.png'
-import { supabase } from '../config/supabase'
 import { usePageView } from '../hooks/usePageView'
+import { useGalleryItems } from '../hooks/useGalleryItems'
+import { fallbackPhotos } from '../data/galleryFallbacks'
 
 const Photography = () => {
-  const [photos, setPhotos]     = useState([])
-  const [loading, setLoading]   = useState(true)
+  const { items: photos, loading } = useGalleryItems('photo', fallbackPhotos)
   const [lightbox, setLightbox] = useState(null)
 
   usePageView('/photography')
-
-  useEffect(() => {
-    supabase
-      .from('gallery_items')
-      .select('*')
-      .eq('type', 'photo')
-      .eq('published', true)
-      .order('sort_order', { ascending: true })
-      .then(({ data }) => {
-        setPhotos(data || [])
-        setLoading(false)
-      })
-  }, [])
 
   const openLightbox = (photo) => setLightbox(photo)
   const closeLightbox = () => setLightbox(null)

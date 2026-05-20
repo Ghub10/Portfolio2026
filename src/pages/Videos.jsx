@@ -1,29 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Videos.css'
 import logo from '../assets/sirlogo2.png'
-import { supabase } from '../config/supabase'
 import { usePageView } from '../hooks/usePageView'
+import { useGalleryItems } from '../hooks/useGalleryItems'
+import { fallbackVideos } from '../data/galleryFallbacks'
 
 const Videos = () => {
-  const [videos, setVideos]         = useState([])
-  const [loading, setLoading]       = useState(true)
+  const { items: videos, loading } = useGalleryItems('video', fallbackVideos)
   const [activeVimeoId, setActiveVimeoId] = useState(null)
 
   usePageView('/videos')
-
-  useEffect(() => {
-    supabase
-      .from('gallery_items')
-      .select('*')
-      .eq('type', 'video')
-      .eq('published', true)
-      .order('sort_order', { ascending: true })
-      .then(({ data }) => {
-        setVideos(data || [])
-        setLoading(false)
-      })
-  }, [])
 
   return (
     <div className="vid-page">
