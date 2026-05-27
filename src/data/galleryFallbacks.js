@@ -59,7 +59,7 @@ export const fallbackProjects = [
   { id: 1, title: 'Red Star Transportation', image_url: redStar, external_url: 'https://redstartransportation.com/' },
   { id: 2, title: 'Web Project', image_url: webProject },
   { id: 3, title: "Chay's Alterations", image_url: chays },
-  { id: 4, title: 'Restaurant Menu', image_url: restaurantMenu },
+  { id: 4, title: 'Catch of the Day', image_url: restaurantMenu, external_url: 'https://catch-of-the-day-menu.vercel.app/store/sirnetz' },
 ]
 
 export const fallbackPhotos = [
