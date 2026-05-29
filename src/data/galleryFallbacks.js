@@ -2,6 +2,7 @@ import redStar from '../assets/IM/redstartransportation copy.png'
 import webProject from '../assets/IM/iStock-1181696848 copy 2.jpg'
 import chays from '../assets/IM/chaysalterations copy.png'
 import restaurantMenu from '../assets/Restaurant Menu.png'
+import businessCard2026 from '../assets/BusinessCard2026.png'
 
 import pic1 from '../assets/TRA/San Francisco copy.png'
 import pic2 from '../assets/TRA/Times Square copy.jpeg'
@@ -60,6 +61,7 @@ export const fallbackProjects = [
   { id: 2, title: 'Web Project', image_url: webProject },
   { id: 3, title: "Chay's Alterations", image_url: chays },
   { id: 4, title: 'Catch of the Day', image_url: restaurantMenu, external_url: 'https://catch-of-the-day-menu.vercel.app/store/sirnetz' },
+  { id: 5, title: 'Business Card 2026', image_url: businessCard2026, external_url: 'https://business-card-2026.vercel.app' },
 ]
 
 export const fallbackPhotos = [

@@ -6,6 +6,28 @@ import { usePageView } from '../hooks/usePageView'
 import { useGalleryItems } from '../hooks/useGalleryItems'
 import { fallbackProjects } from '../data/galleryFallbacks'
 
+/** Prefer `external_url` from CMS; otherwise use env for Catch-of-the-Day thumbs (title match). */
+function getProjectExternalUrl(project) {
+  const raw = project.external_url
+  const explicit = typeof raw === 'string' ? raw.trim() : ''
+  if (explicit) return explicit
+
+  const fromEnv = typeof import.meta.env.VITE_CATCH_OF_THE_DAY_URL === 'string'
+    ? import.meta.env.VITE_CATCH_OF_THE_DAY_URL.trim()
+    : ''
+  if (!fromEnv) return ''
+
+  const title = (project.title || '').toLowerCase()
+  if (
+    title.includes('catch of the day')
+    || title.includes('catch-of-the-day')
+    || title.includes('restaurant menu')
+  ) {
+    return fromEnv
+  }
+  return ''
+}
+
 const Projects = () => {
   const { items: projects, loading } = useGalleryItems('project', fallbackProjects)
   const [lightbox, setLightbox] = useState(null)
@@ -55,9 +77,14 @@ const Projects = () => {
                 key={project.id}
                 className="proj-card"
                 style={{ animationDelay: `${index * 80}ms` }}
-                onClick={() => project.external_url
-                  ? window.open(project.external_url, '_blank', 'noopener,noreferrer')
-                  : openLightbox(project)}
+                onClick={() => {
+                  const url = getProjectExternalUrl(project)
+                  if (url) {
+                    window.open(url, '_blank', 'noopener,noreferrer')
+                  } else {
+                    openLightbox(project)
+                  }
+                }}
                 aria-label={`View ${project.title}`}
               >
                 <img src={project.image_url} alt={project.title} className="proj-card-img" />
