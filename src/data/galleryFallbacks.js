@@ -65,7 +65,7 @@ export const fallbackProjects = [
   { id: 4, title: 'Catch of the Day', image_url: restaurantMenu, external_url: 'https://catch-of-the-day-menu.vercel.app/store/sirnetz' },
   { id: 5, title: 'Business Card 2026', image_url: businessCard2026, external_url: 'https://businesscard-kohl.vercel.app' },
   { id: 6, title: 'CDL-Drivers', image_url: cdlThumbnail, external_url: 'https://cdl-drivers.vercel.app' },
-  { id: 7, title: 'Email Assistant', image_url: emailAssistant, external_url: 'https://mailassist-ai.vercel.app' },
+  { id: 7, title: 'Email Assistant', image_url: emailAssistant, external_url: 'https://mailassist-1c4wii8ax-aabonnanzieri-7722s-projects.vercel.app' },
 ]
 
 export const fallbackPhotos = [
