@@ -209,7 +209,7 @@ function App() {
               <h1 className="hero-title">
                 {typewriterText || 'Designer'}<span className="cursor-blink">|</span>
               </h1>
-              <p className="hero-location">Based in Lisbon, Portugal</p>
+              <p className="hero-location">CDMX · SLC · Lisbon</p>
               <div className="hero-buttons">
                 <button 
                   className="btn-primary btn-view-works" 
@@ -728,7 +728,7 @@ function App() {
                 <span className="contact-icon">📍</span>
                 <div>
                   <h3>Location</h3>
-                  <p>Lisbon Portugal</p>
+                  <p>Salt Lake City, Utah</p>
                 </div>
               </div>
             </div>
