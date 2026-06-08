@@ -4,7 +4,7 @@ import chays from '../assets/IM/chaysalterations copy.png'
 import restaurantMenu from '../assets/Restaurant Menu.png'
 import businessCard2026 from '../assets/BusinessCard2026.png'
 import cdlThumbnail from '../assets/cdl_thumbnail.png'
-import emailAssistant from '../assets/sirnetz-email-assistant.png'
+import emailAssistant from '../assets/email-assistant-thumbnail.png'
 
 import pic1 from '../assets/TRA/San Francisco copy.png'
 import pic2 from '../assets/TRA/Times Square copy.jpeg'
