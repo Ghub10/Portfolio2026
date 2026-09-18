@@ -101,7 +101,7 @@
 .nav-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1.5rem 2rem;
+  padding: 0.75rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -256,6 +256,21 @@
   border-left: solid transparent;
   border-right: solid transparent;
   border-bottom: solid #1a1a1a;
+}
+
+/* Decorative section blobs/scrims are absolutely positioned with z-index, so they
+   paint above the static content and swallow its clicks. Keep them non-interactive. */
+.hero-section::before,
+.hero-section::after,
+.services-section::before,
+.services-section::after,
+.about-section::before,
+.resume-section::after,
+.newpage-section::before,
+.mission-section::before,
+.github-section::before,
+.contact-section::after {
+  pointer-events: none;
 }
 
 /* Hero Section */
