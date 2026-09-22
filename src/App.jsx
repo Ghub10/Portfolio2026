@@ -6,13 +6,11 @@ import 'aos/dist/aos.css'
 import logo from './assets/sirlogo2.png'
 import uofuLogo from './assets/uofu copy.png'
 import ldsbcLogo from './assets/LDSBC copy.png'
-import photographyIcon from './assets/photography copy.png'
-import webIcon from './assets/web copy.png'
-import videographyIcon from './assets/videography.png'
-import designIcon from './assets/design copy.png'
 import computer2Image from './assets/computer2 copy.png'
 import computer1Image from './assets/computer1 copy.png'
 import pricingImage from './assets/pricingimage copy.png'
+import { useGalleryItems } from './hooks/useGalleryItems'
+import { fallbackProjects, fallbackPhotos } from './data/galleryFallbacks'
 
 function App() {
   const navigate = useNavigate()
@@ -22,6 +20,10 @@ function App() {
   const [isDeleting, setIsDeleting] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const { items: projects } = useGalleryItems('project', fallbackProjects)
+  const { items: photos } = useGalleryItems('photo', fallbackPhotos)
+  const [projectLightbox, setProjectLightbox] = useState(null)
+  const [photoLightbox, setPhotoLightbox] = useState(null)
 
   const words = ['Designer', 'Creator', 'Innovator']
 
@@ -168,9 +170,9 @@ function App() {
           </div>
           <ul className="nav-menu">
             <li><a href="#home" onClick={() => scrollToSection('home')}>Home</a></li>
-            <li><a href="#services" onClick={() => scrollToSection('services')}>Services</a></li>
-            <li><a href="#github" onClick={() => scrollToSection('github')}>Github</a></li>
+            <li><a href="#projects" onClick={() => scrollToSection('projects')}>Projects</a></li>
             <li><a href="#about" onClick={() => scrollToSection('about')}>About Me</a></li>
+            <li><a href="#github" onClick={() => scrollToSection('github')}>Github</a></li>
             <li><a href="#contact" onClick={() => scrollToSection('contact')}>Contact Me</a></li>
           </ul>
           <div className="nav-right">
@@ -192,9 +194,9 @@ function App() {
         {menuOpen && (
           <div className="mobile-menu">
             <a href="#home" onClick={() => scrollToSection('home')}>Home</a>
-            <a href="#services" onClick={() => scrollToSection('services')}>Services</a>
-            <a href="#github" onClick={() => scrollToSection('github')}>Github</a>
+            <a href="#projects" onClick={() => scrollToSection('projects')}>Projects</a>
             <a href="#about" onClick={() => scrollToSection('about')}>About Me</a>
+            <a href="#github" onClick={() => scrollToSection('github')}>Github</a>
             <a href="#contact" onClick={() => scrollToSection('contact')}>Contact Me</a>
           </div>
         )}
@@ -205,15 +207,15 @@ function App() {
         <div className="hero-container">
           <div className="hero-content">
             <div className="hero-text">
-              <h2 className="hero-subtitle">Hi I'm A Web Content Specialist</h2>
+              <h2 className="hero-subtitle">Hi I'm an AI Engineer & Full-Stack Developer</h2>
               <h1 className="hero-title">
                 {typewriterText || 'Designer'}<span className="cursor-blink">|</span>
               </h1>
               <p className="hero-location">CDMX · SLC · Lisbon</p>
               <div className="hero-buttons">
-                <button 
-                  className="btn-primary btn-view-works" 
-                  onClick={() => scrollToSection('services')}
+                <button
+                  className="btn-primary btn-view-works"
+                  onClick={() => scrollToSection('projects')}
                 >
                   View My Works
                 </button>
@@ -242,105 +244,88 @@ function App() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="services-section">
+      {/* Projects Section */}
+      <section id="projects" className="projects-section">
         <div className="section-container">
-          <h2 className="section-title" data-aos="fade-up" data-aos-duration="1000">Services</h2>
-          <div className="services-grid">
-            <div className="service-card">
-              <div className="service-icon">
-                <img
-                  src={webIcon}
-                  alt="Web Development"
-                  style={{ width: '200px', height: '200px', objectFit: 'contain' }}
-                />
-              </div>
-              <h3>Web Development</h3>
-              <p>Building responsive and interactive user interfaces with modern frameworks.</p>
-              <ul>
-                <li>Mobile Service Compatible</li>
-                <li>Responsive Design</li>
-                <li>Basic Application Development</li>
-                <li>Custom Graphics</li>
-                <li>WordPress Content Management</li>
-                <li>Photo/Video Content</li>
-              </ul>
-              <button
-                className="view-gallery-btn"
-                onClick={() => navigate('/projects')}
+          <h2 className="section-title" data-aos="fade-up" data-aos-duration="1000">Projects</h2>
+          <div className="projects-cards-grid">
+            {projects.map((project, index) => (
+              <div
+                key={project.id}
+                className={`project-card ${project.featured ? 'featured' : ''}`}
+                style={{ animationDelay: `${index * 80}ms` }}
+                data-aos="fade-up"
+                data-aos-duration="1000"
               >
-                View Projects →
-              </button>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">
-                <img 
-                  src={photographyIcon} 
-                  alt="Photography" 
-                  style={{ width: '200px', height: '200px', objectFit: 'contain' }}
-                />
+                {project.featured && <span className="featured-badge">Featured</span>}
+
+                {project.previewType && (
+                  <div className="project-preview">
+                    <button className="preview-play-btn" aria-label="Play preview">
+                      ▶
+                    </button>
+                    {project.previewType === 'video' && project.previewDuration && (
+                      <span className="preview-duration">⏱ {project.previewDuration} demo</span>
+                    )}
+                    {project.previewType === 'image' && (
+                      <span className="preview-label">Screenshot of the real site, not a stock photo</span>
+                    )}
+                  </div>
+                )}
+
+                <img src={project.image_url} alt={project.title} className="project-card-img" />
+
+                <div className="project-card-content">
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-description">{project.description}</p>
+
+                  {project.role && (
+                    <div className="project-meta">
+                      <div className="meta-item">
+                        <span className="meta-label">Role</span>
+                        <span className="meta-value">{project.role}</span>
+                      </div>
+                      {project.result && (
+                        <div className="meta-item">
+                          <span className="meta-label">Result</span>
+                          <span className="meta-value">{project.result}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {project.technologies && project.technologies.length > 0 && (
+                    <div className="project-technologies">
+                      {project.technologies.map((tech, idx) => (
+                        <span key={idx} className="tech-badge">{tech}</span>
+                      ))}
+                    </div>
+                  )}
+
+                  {project.links && project.links.length > 0 && (
+                    <div className="project-links">
+                      {project.links.map((link, idx) => (
+                        <a
+                          key={idx}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`project-link ${link.type}`}
+                          aria-label={link.label}
+                        >
+                          {link.type === 'demo' && '↗ '}
+                          {link.type === 'github' && '🐙 '}
+                          {link.type === 'study' && '📄 '}
+                          {link.type === 'site' && '↗ '}
+                          {link.type === 'repo' && '🔒 '}
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-              <h3>Photography</h3>
-              <p>Capturing compelling visual stories and professional imagery for your brand.</p>
-              <ul>
-                <li>Landscape</li>
-                <li>Commercial</li>
-                <li>Real Estate</li>
-                <li>Special Events</li>
-              </ul>
-              <button
-                className="view-gallery-btn"
-                onClick={() => navigate('/photography')}
-              >
-                View Gallery →
-              </button>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">
-                <img 
-                  src={designIcon} 
-                  alt="Consulting" 
-                  style={{ width: '200px', height: '200px', objectFit: 'contain' }}
-                />
-              </div>
-              <h3>Consulting</h3>
-              <p>Providing expert advice on design strategies and technical implementations.</p>
-              <ul>
-                <li>Assessment</li>
-                <li>Strategic Planning</li>
-                <li>Execution</li>
-                <li>Payment Options</li>
-              </ul>
-              <button
-                className="view-gallery-btn"
-                onClick={() => navigate('/consulting')}
-              >
-                Get a Consultation →
-              </button>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">
-                <img 
-                  src={videographyIcon} 
-                  alt="Videography" 
-                  style={{ width: '200px', height: '200px', objectFit: 'contain' }}
-                />
-              </div>
-              <h3>Videography</h3>
-              <p>Producing engaging video content for web, social media, and campaigns.</p>
-              <ul>
-                <li>Weddings</li>
-                <li>Commercial</li>
-                <li>Entertainment</li>
-                <li>Informational</li>
-              </ul>
-              <button
-                className="view-gallery-btn"
-                onClick={() => navigate('/videos')}
-              >
-                See Videos →
-              </button>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -352,9 +337,9 @@ function App() {
             <div className="about-text">
               <h2 className="section-title" data-aos="fade-up" data-aos-duration="1000">About Me</h2>
               <p className="about-first-paragraph">
-                <img 
-                  src={uofuLogo} 
-                  alt="University of Utah Logo" 
+                <img
+                  src={uofuLogo}
+                  alt="University of Utah Logo"
                   className="about-logo"
                 />
                 Mr. Abonnanzieri began his professional journey as a Senior Account Manager at Discover Card, where he managed accounts payable and receivables as part of a strategic back office initiative. After two years of distinguished service, he transitioned to the Salt Lake City Justice Court, where he served as a Judicial Assistant.
@@ -363,9 +348,9 @@ function App() {
                 During his tenure at the Justice Court, he leveraged his educational background in media marketing to spearhead his first development projects and contribute significantly to the communications team, demonstrating his ability to bridge technical expertise with strategic communication.
               </p>
               <p className="about-first-paragraph">
-                <img 
-                  src={ldsbcLogo} 
-                  alt="LDS Business College Logo" 
+                <img
+                  src={ldsbcLogo}
+                  alt="LDS Business College Logo"
                   className="about-logo"
                 />
                 His exceptional work at the court led to an invitation to join ComV Productions, where he further refined his expertise in photography and video editing. His talent and dedication caught the attention of the University of Utah, which subsequently offered him the prestigious role of directing the "News Break" show.
@@ -378,6 +363,43 @@ function App() {
               </p>
             </div>
           </div>
+
+          {/* Photography Gallery in About Me */}
+          <div className="about-photography">
+            <h3 className="about-photo-title" data-aos="fade-up" data-aos-duration="1000">Photography</h3>
+            <div className="about-photo-grid">
+              {photos.map((photo, index) => (
+                <button
+                  key={photo.id}
+                  className="about-photo-card"
+                  style={{ animationDelay: `${(index % 8) * 50}ms` }}
+                  onClick={() => setPhotoLightbox(photo)}
+                  aria-label={`View ${photo.title}`}
+                >
+                  <img src={photo.image_url} alt={photo.title} className="about-photo-img" />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {photoLightbox && (
+            <div className="about-photo-lightbox" onClick={() => setPhotoLightbox(null)}>
+              <div className="about-photo-lightbox-inner" onClick={e => e.stopPropagation()}>
+                <button
+                  className="about-photo-lb-close"
+                  onClick={() => setPhotoLightbox(null)}
+                  aria-label="Close"
+                >
+                  ✕
+                </button>
+                <img src={photoLightbox.image_url} alt={photoLightbox.title} className="about-photo-lb-img" />
+                <div className="about-photo-lb-caption">
+                  <span className="about-photo-lb-label">{photoLightbox.title}</span>
+                  <span className="about-photo-lb-cat">{photoLightbox.category}</span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
