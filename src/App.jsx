@@ -4,13 +4,14 @@ import './App.css'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import logo from './assets/sirlogo2.png'
-import uofuLogo from './assets/uofu copy.png'
-import ldsbcLogo from './assets/LDSBC copy.png'
+import uuLogo from './assets/UU-Logo-HRZ_RGB.png'
+import ensignLogo from './assets/Ensign.png'
+import dtcLogo from './assets/DTC.png'
 import computer2Image from './assets/computer2 copy.png'
 import computer1Image from './assets/computer1 copy.png'
 import pricingImage from './assets/pricingimage copy.png'
 import { useGalleryItems } from './hooks/useGalleryItems'
-import { fallbackProjects, fallbackPhotos } from './data/galleryFallbacks'
+import { fallbackProjects, fallbackPhotos, fallbackVideos } from './data/galleryFallbacks'
 
 function App() {
   const navigate = useNavigate()
@@ -22,8 +23,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true)
   const { items: projects } = useGalleryItems('project', fallbackProjects)
   const { items: photos } = useGalleryItems('photo', fallbackPhotos)
+  const { items: videos } = useGalleryItems('video', fallbackVideos)
   const [projectLightbox, setProjectLightbox] = useState(null)
-  const [photoLightbox, setPhotoLightbox] = useState(null)
 
   const words = ['Designer', 'Creator', 'Innovator']
 
@@ -327,18 +328,50 @@ function App() {
               </div>
             ))}
           </div>
+
+          {/* Videos in Horizontal Layout */}
+          <div className="projects-videos-section">
+            <div className="videos-grid">
+              {videos.map((video) => (
+                <div key={video.id} className="video-card">
+                  <div className="video-thumbnail">
+                    {video.image_url ? (
+                      <img src={video.image_url} alt={video.title} />
+                    ) : (
+                      <div className="video-placeholder">
+                        <span className="video-icon">🎬</span>
+                      </div>
+                    )}
+                    <div className="video-overlay">
+                      <a
+                        href={`https://vimeo.com/${video.vimeo_id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="video-play-btn"
+                        aria-label={`Watch ${video.title}`}
+                      >
+                        ▶
+                      </a>
+                    </div>
+                  </div>
+                  <p className="video-title">{video.title}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* About Me Section */}
       <section id="about" className="about-section">
         <div className="section-container">
+          <h2 className="section-title" data-aos="fade-up" data-aos-duration="1000">About Me</h2>
+
           <div className="about-content">
             <div className="about-text">
-              <h2 className="section-title" data-aos="fade-up" data-aos-duration="1000">About Me</h2>
               <p className="about-first-paragraph">
                 <img
-                  src={uofuLogo}
+                  src={uuLogo}
                   alt="University of Utah Logo"
                   className="about-logo"
                 />
@@ -349,8 +382,8 @@ function App() {
               </p>
               <p className="about-first-paragraph">
                 <img
-                  src={ldsbcLogo}
-                  alt="LDS Business College Logo"
+                  src={ensignLogo}
+                  alt="Ensign College Logo"
                   className="about-logo"
                 />
                 His exceptional work at the court led to an invitation to join ComV Productions, where he further refined his expertise in photography and video editing. His talent and dedication caught the attention of the University of Utah, which subsequently offered him the prestigious role of directing the "News Break" show.
@@ -359,47 +392,29 @@ function App() {
                 In 2017, Mr. Abonnanzieri embarked on an international career move, relocating to Lisbon, Portugal. There, he joined Agência de Marketing Digital as a Senior Content Development Manager, where he applied his diverse skill set for over a year, contributing to the agency's digital marketing initiatives.
               </p>
               <p>
-                Most recently, Mr. Abonnanzieri served as Vice President at Red Star Transportation, where he successfully integrated his multifaceted expertise as a marketing director, financial strategist, and web developer. He has recently launched his own venture, Sirnetz, with the vision of exploring new opportunities and expanding his professional portfolio in the web development field.
+                Mr. Abonnanzieri served as Vice President at Red Star Transportation, where he successfully integrated his multifaceted expertise as a marketing director, financial strategist, and web developer. He has recently launched his own venture, Sirnetz, with the vision of exploring new opportunities and expanding his professional portfolio in the web development field.
+              </p>
+              <p className="about-first-paragraph">
+                <img
+                  src={dtcLogo}
+                  alt="DTC Logo"
+                  className="about-logo"
+                />
+                Today, Mr. Abonnanzieri is bringing that same drive into robotics and industrial automation. He is currently training in Robotics and Automation Technology, a hands-on, competency-based program led by industry professionals, where he is gaining practical experience programming Allen-Bradley PLCs in Studio 5000 and operating FANUC industrial robots. His training also covers servo systems, machine vision, industrial networking, and Human Machine Interface (HMI) design, along with the mechanical and troubleshooting fundamentals that keep automated systems running. His background in web development gives him a strong head start in logic-based programming and interface design, and his years in operations and leadership help him see automation as a business does: a way to improve efficiency, reliability, and growth. He is preparing to work as a Control Systems Technician, combining software, hardware, and strategic thinking to help modern manufacturing run smarter.
               </p>
             </div>
           </div>
 
-          {/* Photography Gallery in About Me */}
-          <div className="about-photography">
-            <h3 className="about-photo-title" data-aos="fade-up" data-aos-duration="1000">Photography</h3>
-            <div className="about-photo-grid">
-              {photos.map((photo, index) => (
-                <button
-                  key={photo.id}
-                  className="about-photo-card"
-                  style={{ animationDelay: `${(index % 8) * 50}ms` }}
-                  onClick={() => setPhotoLightbox(photo)}
-                  aria-label={`View ${photo.title}`}
-                >
-                  <img src={photo.image_url} alt={photo.title} className="about-photo-img" />
-                </button>
+          {/* Photos in Horizontal Layout - Two Rows */}
+          <div className="about-photos-horizontal">
+            <div className="about-photos-grid">
+              {photos.map((photo) => (
+                <div key={photo.id} className="about-photo-surround">
+                  <img src={photo.image_url} alt={photo.title} />
+                </div>
               ))}
             </div>
           </div>
-
-          {photoLightbox && (
-            <div className="about-photo-lightbox" onClick={() => setPhotoLightbox(null)}>
-              <div className="about-photo-lightbox-inner" onClick={e => e.stopPropagation()}>
-                <button
-                  className="about-photo-lb-close"
-                  onClick={() => setPhotoLightbox(null)}
-                  aria-label="Close"
-                >
-                  ✕
-                </button>
-                <img src={photoLightbox.image_url} alt={photoLightbox.title} className="about-photo-lb-img" />
-                <div className="about-photo-lb-caption">
-                  <span className="about-photo-lb-label">{photoLightbox.title}</span>
-                  <span className="about-photo-lb-cat">{photoLightbox.category}</span>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </section>
 
@@ -574,29 +589,29 @@ function App() {
               </div>
               <div className="skill-progress-item">
                 <div className="skill-header">
-                  <span className="skill-name">Lightroom</span>
-                  <span className="skill-percentage">85%</span>
+                  <span className="skill-name">Allen-Bradley PLCs</span>
+                  <span className="skill-percentage">80%</span>
                 </div>
                 <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '85%' }}></div>
+                  <div className="progress-fill" style={{ width: '80%' }}></div>
                 </div>
               </div>
               <div className="skill-progress-item">
                 <div className="skill-header">
-                  <span className="skill-name">Photoshop</span>
-                  <span className="skill-percentage">88%</span>
+                  <span className="skill-name">Studio 5000</span>
+                  <span className="skill-percentage">78%</span>
                 </div>
                 <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '88%' }}></div>
+                  <div className="progress-fill" style={{ width: '78%' }}></div>
                 </div>
               </div>
               <div className="skill-progress-item">
                 <div className="skill-header">
-                  <span className="skill-name">Illustrator</span>
-                  <span className="skill-percentage">83%</span>
+                  <span className="skill-name">FANUC Robots</span>
+                  <span className="skill-percentage">75%</span>
                 </div>
                 <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '83%' }}></div>
+                  <div className="progress-fill" style={{ width: '75%' }}></div>
                 </div>
               </div>
               <div className="skill-progress-item">
@@ -619,20 +634,38 @@ function App() {
               </div>
               <div className="skill-progress-item">
                 <div className="skill-header">
-                  <span className="skill-name">Videographer</span>
-                  <span className="skill-percentage">87%</span>
+                  <span className="skill-name">PLC Programming</span>
+                  <span className="skill-percentage">80%</span>
                 </div>
                 <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '87%' }}></div>
+                  <div className="progress-fill" style={{ width: '80%' }}></div>
                 </div>
               </div>
               <div className="skill-progress-item">
                 <div className="skill-header">
-                  <span className="skill-name">Photography</span>
-                  <span className="skill-percentage">90%</span>
+                  <span className="skill-name">HMI Design</span>
+                  <span className="skill-percentage">77%</span>
                 </div>
                 <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '90%' }}></div>
+                  <div className="progress-fill" style={{ width: '77%' }}></div>
+                </div>
+              </div>
+              <div className="skill-progress-item">
+                <div className="skill-header">
+                  <span className="skill-name">Machine Vision</span>
+                  <span className="skill-percentage">75%</span>
+                </div>
+                <div className="progress-bar">
+                  <div className="progress-fill" style={{ width: '75%' }}></div>
+                </div>
+              </div>
+              <div className="skill-progress-item">
+                <div className="skill-header">
+                  <span className="skill-name">Industrial Networking</span>
+                  <span className="skill-percentage">76%</span>
+                </div>
+                <div className="progress-bar">
+                  <div className="progress-fill" style={{ width: '76%' }}></div>
                 </div>
               </div>
             </div>

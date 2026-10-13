@@ -6,29 +6,36 @@ import businessCard2026 from '../assets/BusinessCard2026.png'
 import cdlThumbnail from '../assets/cdl_thumbnail.png'
 import emailAssistant from '../assets/email-assistant-thumbnail.png'
 
-import pic1 from '../assets/TRA/San Francisco copy.png'
-import pic2 from '../assets/TRA/Times Square copy.jpeg'
-import pic5 from '../assets/TRA/pic 5 copy.png'
-import pic7 from '../assets/TRA/pic 7 copy.png'
-import pic8 from '../assets/TRA/pic 8 copy.png'
-import pic9 from '../assets/TRA/pic 9 copy.png'
-import pic10 from '../assets/TRA/pic 10 copy.png'
-import pic11 from '../assets/TRA/pic 11 copy.png'
-import pic12 from '../assets/TRA/pic 12 copy.png'
-import pic13 from '../assets/TRA/pic 13 copy.png'
-import pic14 from '../assets/TRA/pic 14 copy.png'
-import pic15 from '../assets/TRA/pic 15 copy.png'
-import pic16 from '../assets/TRA/pic 16 copy.png'
-import pic17 from '../assets/TRA/pic 17 copy.png'
-import pic18 from '../assets/TRA/pic 18 copy.png'
-import pic21 from '../assets/TRA/pic 21 copy.png'
-import pic22 from '../assets/TRA/pic 22 copy.png'
-import pic23 from '../assets/TRA/pic 23 copy.png'
-import pic24 from '../assets/TRA/pic 24 copy.png'
-import pic25 from '../assets/TRA/pic 25 copy.png'
-import pic26 from '../assets/TRA/pic 26 copy.png'
+import sanFrancisco from '../assets/TRA/San Francisco copy.png'
+import paris from '../assets/TRA/Paris copy.png'
+import pisa from '../assets/TRA/Pisa copy.png'
+import sintra from '../assets/TRA/Sintra copy.png'
+import firenze from '../assets/TRA/Firenze.png'
+import campNou from '../assets/TRA/Camp Nou copy.png'
+import london from '../assets/TRA/London.png'
+import cambridge from '../assets/TRA/Cambridge copy.png'
+import warsawa from '../assets/TRA/Warsawa copy.png'
+import chihenitza from '../assets/TRA/Chihenitza copy.png'
+import peña from '../assets/TRA/Peña copy.png'
 import hawaii from '../assets/TRA/Hawaii copy.png'
-import pic27 from '../assets/TRA/pic 27 copy.png'
+import inframundo from '../assets/TRA/Inframundo copy.png'
+import africa from '../assets/TRA/Africa.png'
+import capetown from '../assets/TRA/Capetown.png'
+import cristoRedentor from '../assets/TRA/Cristo Redentor.png'
+import zocalo from '../assets/TRA/Zocalo copy.png'
+import coliseo from '../assets/TRA/Coliseo.png'
+import bryce from '../assets/TRA/Bryce.png'
+import escalante from '../assets/TRA/Escalante.png'
+import escalante2 from '../assets/TRA/Escalante2.png'
+import volcano from '../assets/TRA/Volcano copy.png'
+import roadToHannah from '../assets/TRA/Road to Hannah.png'
+import helicopter from '../assets/TRA/Helicopter.png'
+import couple from '../assets/TRA/Couple copy.png'
+import prazaCom from '../assets/TRA/Praza do Com copy.png'
+import sagradaFamilia from '../assets/TRA/Sagrada Familia.png'
+import bahamas from '../assets/TRA/bahamas.png'
+import shark from '../assets/TRA/shark copy.png'
+import kiss from '../assets/TRA/kiss copy.png'
 
 import thumbWebDev from '../assets/Thumbnails copy/WebDevelopmentThumbnail.png'
 import thumbFitness from '../assets/Thumbnails copy/Fitness.png'
@@ -169,29 +176,36 @@ export const fallbackProjects = [
 ]
 
 export const fallbackPhotos = [
-  { id: 1, title: 'San Francisco', category: 'USA', image_url: pic1 },
-  { id: 2, title: 'Times Square', category: 'USA', image_url: pic2 },
-  { id: 5, title: 'Amsterdam', category: 'Europe', image_url: pic5 },
-  { id: 7, title: 'Paris', category: 'Europe', image_url: pic7 },
-  { id: 8, title: 'Pisa', category: 'Europe', image_url: pic8 },
-  { id: 9, title: 'Rome', category: 'Europe', image_url: pic9 },
-  { id: 10, title: 'Firenze', category: 'Europe', image_url: pic10 },
-  { id: 11, title: 'Camp Nou', category: 'Europe', image_url: pic11 },
-  { id: 12, title: 'Sintra', category: 'Europe', image_url: pic12 },
-  { id: 13, title: 'Barcelona', category: 'Europe', image_url: pic13 },
-  { id: 14, title: 'London', category: 'Europe', image_url: pic14 },
-  { id: 15, title: 'Cambridge', category: 'Europe', image_url: pic15 },
-  { id: 16, title: 'Lisbon', category: 'Europe', image_url: pic16 },
-  { id: 17, title: 'Warsawa', category: 'Europe', image_url: pic17 },
-  { id: 18, title: 'Vatican', category: 'Europe', image_url: pic18 },
-  { id: 21, title: 'Mexico City', category: 'Mexico', image_url: pic21 },
-  { id: 22, title: 'Chichenitza', category: 'Mexico', image_url: pic22 },
-  { id: 23, title: 'Tulum', category: 'Mexico', image_url: pic23 },
-  { id: 24, title: 'Haleakalā', category: 'Pacific', image_url: pic24 },
-  { id: 25, title: 'Kauai', category: 'Pacific', image_url: pic25 },
-  { id: 26, title: 'Maui', category: 'Pacific', image_url: pic26 },
-  { id: 27, title: 'Hawaii', category: 'Pacific', image_url: hawaii },
-  { id: 28, title: 'Photo 27', category: 'Pacific', image_url: pic27 },
+  { id: 1, title: 'Hawaii', category: 'Pacific', image_url: hawaii },
+  { id: 2, title: 'Cristo Redentor', category: 'Latin America', image_url: cristoRedentor },
+  { id: 3, title: 'Bryce', category: 'USA', image_url: bryce },
+  { id: 4, title: 'Peña', category: 'Mexico', image_url: peña },
+  { id: 5, title: 'Paris', category: 'Europe', image_url: paris },
+  { id: 6, title: 'Helicopter', category: 'Adventure', image_url: helicopter },
+  { id: 7, title: 'Warsawa', category: 'Europe', image_url: warsawa },
+  { id: 8, title: 'Escalante', category: 'USA', image_url: escalante },
+  { id: 9, title: 'Capetown', category: 'Africa', image_url: capetown },
+  { id: 10, title: 'Zocalo', category: 'Mexico', image_url: zocalo },
+  { id: 11, title: 'Bahamas', category: 'Caribbean', image_url: bahamas },
+  { id: 12, title: 'San Francisco', category: 'USA', image_url: sanFrancisco },
+  { id: 13, title: 'Chihenitza', category: 'Mexico', image_url: chihenitza },
+  { id: 14, title: 'Camp Nou', category: 'Europe', image_url: campNou },
+  { id: 15, title: 'Inframundo', category: 'Mexico', image_url: inframundo },
+  { id: 16, title: 'Volcano', category: 'Pacific', image_url: volcano },
+  { id: 17, title: 'London', category: 'Europe', image_url: london },
+  { id: 18, title: 'Firenze', category: 'Europe', image_url: firenze },
+  { id: 19, title: 'Couple', category: 'People', image_url: couple },
+  { id: 20, title: 'Sintra', category: 'Europe', image_url: sintra },
+  { id: 21, title: 'Road to Hannah', category: 'USA', image_url: roadToHannah },
+  { id: 22, title: 'Coliseo', category: 'Latin America', image_url: coliseo },
+  { id: 23, title: 'Cambridge', category: 'Europe', image_url: cambridge },
+  { id: 24, title: 'Sagrada Familia', category: 'Europe', image_url: sagradaFamilia },
+  { id: 25, title: 'Escalante 2', category: 'USA', image_url: escalante2 },
+  { id: 26, title: 'Praza do Com', category: 'Europe', image_url: prazaCom },
+  { id: 27, title: 'Africa', category: 'Africa', image_url: africa },
+  { id: 28, title: 'Pisa', category: 'Europe', image_url: pisa },
+  { id: 29, title: 'Shark', category: 'Adventure', image_url: shark },
+  { id: 30, title: 'Kiss', category: 'People', image_url: kiss },
 ]
 
 export const fallbackVideos = [
