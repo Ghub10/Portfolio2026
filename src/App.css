@@ -1454,6 +1454,21 @@ section {
   margin-top: 3rem;
 }
 
+.resume-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  justify-items: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 6rem;
+}
+
+.resume-logo {
+  height: 60px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+}
 .download-cv-btn {
   background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
   color: #1a1a1a;

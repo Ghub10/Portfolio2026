@@ -7,6 +7,21 @@ import logo from './assets/sirlogo2.png'
 import uuLogo from './assets/UU-Logo-HRZ_RGB.png'
 import ensignLogo from './assets/Ensign.png'
 import dtcLogo from './assets/DTC.png'
+import commercialFundingLogo from './assets/CommercialFunding.png'
+import deerValleyLogo from './assets/DeerValley.png'
+import discoverLogo from './assets/Discover.png'
+import pcsdLogo from './assets/PCSD.png'
+import uofuLogo from './assets/UofULogo.png'
+import westernerLogo from './assets/Westerner.png'
+import womenEliteLogo from './assets/women-elite.png'
+import redstarLogo from './assets/redstar.png'
+import mpowerULogo from './assets/MPowerU.png'
+import murrayLogo from './assets/Murray.png'
+import executiveMindsetLogo from './assets/ExecutiveMindset.png'
+import slcJusticeLogo from './assets/SLC Justice.png'
+import dexaBodyLogo from './assets/dexabody.png'
+import dailedLogo from './assets/Dailed.png'
+import zadeBalanceLogo from './assets/zadebalance.png'
 import computer2Image from './assets/computer2 copy.png'
 import computer1Image from './assets/computer1 copy.png'
 import pricingImage from './assets/pricingimage copy.png'
@@ -248,7 +263,6 @@ function App() {
       {/* Projects Section */}
       <section id="projects" className="projects-section">
         <div className="section-container">
-          <h2 className="section-title" data-aos="fade-up" data-aos-duration="1000">Projects</h2>
           <div className="projects-cards-grid">
             {projects.map((project, index) => (
               <div
@@ -259,20 +273,6 @@ function App() {
                 data-aos-duration="1000"
               >
                 {project.featured && <span className="featured-badge">Featured</span>}
-
-                {project.previewType && (
-                  <div className="project-preview">
-                    <button className="preview-play-btn" aria-label="Play preview">
-                      ▶
-                    </button>
-                    {project.previewType === 'video' && project.previewDuration && (
-                      <span className="preview-duration">⏱ {project.previewDuration} demo</span>
-                    )}
-                    {project.previewType === 'image' && (
-                      <span className="preview-label">Screenshot of the real site, not a stock photo</span>
-                    )}
-                  </div>
-                )}
 
                 <img src={project.image_url} alt={project.title} className="project-card-img" />
 
@@ -369,16 +369,16 @@ function App() {
 
           <div className="about-content">
             <div className="about-text">
+              <p>
+                My career has never followed a straight line, and I’ve come to see that as my advantage.
+              </p>
               <p className="about-first-paragraph">
                 <img
                   src={uuLogo}
                   alt="University of Utah Logo"
                   className="about-logo"
                 />
-                Mr. Abonnanzieri began his professional journey as a Senior Account Manager at Discover Card, where he managed accounts payable and receivables as part of a strategic back office initiative. After two years of distinguished service, he transitioned to the Salt Lake City Justice Court, where he served as a Judicial Assistant.
-              </p>
-              <p>
-                During his tenure at the Justice Court, he leveraged his educational background in media marketing to spearhead his first development projects and contribute significantly to the communications team, demonstrating his ability to bridge technical expertise with strategic communication.
+                My career began in retirement finance at Discover, where I managed Roth IRA accounts and learned how much trust depends on accuracy. From there I moved to the Salt Lake City Justice Court as a Judicial Assistant. That’s where my marketing background and my curiosity came together: I took on my first development projects and started helping the communications team. I found I loved building things that made work run better.
               </p>
               <p className="about-first-paragraph">
                 <img
@@ -386,13 +386,10 @@ function App() {
                   alt="Ensign College Logo"
                   className="about-logo"
                 />
-                His exceptional work at the court led to an invitation to join ComV Productions, where he further refined his expertise in photography and video editing. His talent and dedication caught the attention of the University of Utah, which subsequently offered him the prestigious role of directing the "News Break" show.
+                That pulled me toward creative work. I did photography and video editing with ComV Productions, and later directed the “News Break” show at the University of Utah. Then in 2017 I took a big leap and moved to Lisbon, Portugal, where I worked as a Senior Content Development Manager at Frederico Carvalho, a digital marketing agency. Living and working abroad taught me to adapt fast and to see problems from more than one angle.
               </p>
               <p>
-                In 2017, Mr. Abonnanzieri embarked on an international career move, relocating to Lisbon, Portugal. There, he joined Agência de Marketing Digital as a Senior Content Development Manager, where he applied his diverse skill set for over a year, contributing to the agency's digital marketing initiatives.
-              </p>
-              <p>
-                Mr. Abonnanzieri served as Vice President at Red Star Transportation, where he successfully integrated his multifaceted expertise as a marketing director, financial strategist, and web developer. He has recently launched his own venture, Sirnetz, with the vision of exploring new opportunities and expanding his professional portfolio in the web development field.
+                When I came back, I became Vice President at Red Star Transportation. There I wore every hat I had: marketing, finance, and web development. Running operations up close showed me how much a business depends on systems that just work. Later I launched my own web development company, Sirnetz.
               </p>
               <p className="about-first-paragraph">
                 <img
@@ -400,7 +397,10 @@ function App() {
                   alt="DTC Logo"
                   className="about-logo"
                 />
-                Today, Mr. Abonnanzieri is bringing that same drive into robotics and industrial automation. He is currently training in Robotics and Automation Technology, a hands-on, competency-based program led by industry professionals, where he is gaining practical experience programming Allen-Bradley PLCs in Studio 5000 and operating FANUC industrial robots. His training also covers servo systems, machine vision, industrial networking, and Human Machine Interface (HMI) design, along with the mechanical and troubleshooting fundamentals that keep automated systems running. His background in web development gives him a strong head start in logic-based programming and interface design, and his years in operations and leadership help him see automation as a business does: a way to improve efficiency, reliability, and growth. He is preparing to work as a Control Systems Technician, combining software, hardware, and strategic thinking to help modern manufacturing run smarter.
+                Eventually, all those threads led me to automation. I trained in Robotics and Automation Technology, programming Allen-Bradley PLCs in Studio 5000, operating FANUC robots, and learning servo systems, machine vision, networking, and HMI design. Writing code taught me logic. Leading a business taught me why efficiency and reliability matter. Automation is where the two come together.
+              </p>
+              <p>
+                Today, I work as an AI Engineer and Control Systems Technician, helping manufacturers run smarter, one system at a time.
               </p>
             </div>
           </div>
@@ -681,6 +681,25 @@ function App() {
               Resume
             </a>
           </div>
+
+          {/* Logo Row */}
+          <div className="resume-logos">
+            <img src={commercialFundingLogo} alt="Commercial Funding Logo" className="resume-logo" />
+            <img src={deerValleyLogo} alt="Deer Valley Logo" className="resume-logo" />
+            <img src={discoverLogo} alt="Discover Logo" className="resume-logo" />
+            <img src={pcsdLogo} alt="PCSD Logo" className="resume-logo" />
+            <img src={uofuLogo} alt="University of Utah Logo" className="resume-logo" />
+            <img src={westernerLogo} alt="Westerner Logo" className="resume-logo" />
+            <img src={womenEliteLogo} alt="Women Elite Logo" className="resume-logo" />
+            <img src={redstarLogo} alt="Redstar Logo" className="resume-logo" />
+            <img src={mpowerULogo} alt="MPowerU Logo" className="resume-logo" />
+            <img src={murrayLogo} alt="Murray Logo" className="resume-logo" />
+            <img src={executiveMindsetLogo} alt="Executive Mindset Logo" className="resume-logo" />
+            <img src={slcJusticeLogo} alt="SLC Justice Court Logo" className="resume-logo" />
+            <img src={dexaBodyLogo} alt="DexaBody Logo" className="resume-logo" />
+            <img src={dailedLogo} alt="Dailed In Fitness Logo" className="resume-logo" />
+            <img src={zadeBalanceLogo} alt="Zade Balance Logo" className="resume-logo" />
+          </div>
         </div>
       </section>
 
@@ -694,7 +713,8 @@ function App() {
             <div className="right" data-aos="fade-left" data-aos-duration="3000">
               <div className="content">
                 <h1>Knowledge is Power</h1>
-                <p>The majority of small businesses aren't aware that their websites are the "Capital of their Digital Empire." The unnecessary waste of time and resources spent on inefficient marketing techniques is a very common mistake and as a consequence, they loose potential clients just for the simple fact that their site isn't designed to close a sale. As an entrepreneur, you need to know that most conversions happen on your website.</p>
+                <p>Before I ever programmed a PLC, I spent years writing code for the web. I learned to think in logic, build interfaces people actually understand, and track down bugs until the real cause turned up. It turns out that’s the same thinking a production line needs.</p>
+                <p>Today I use those skills to write clean, well-documented PLC programs, design HMI screens that make problems easy to spot, and troubleshoot systems so they keep running. Whether it’s a website or a robot cell, I believe the same thing: when you truly understand how a system works, you can make it work better.</p>
               </div>
             </div>
           </div>
@@ -707,8 +727,8 @@ function App() {
           <div className="mission-content">
             <div className="mission-text">
               <div className="content">
-                <h1>Our Mission</h1>
-                <p>This is the reason why I decided to help entrepreneurs create their eMarketing/Branding plan at a fraction of the cost of the big design agencies. My philosophy is that everyone has a story to tell. Together we can develop a plan to effectively reach the right target audience, in the right places, delivering the right message, and as a result, creating a new business opportunity. Sirnetz combines the arts of photography and videography with web development creating beautiful websites/applications meeting the expectations of our clients.</p>
+                <h1>My Mission</h1>
+                <p>Everyone has a story to tell, and for years I helped businesses tell theirs through photography, video, and web development. Along the way I learned that the best work happens when creativity meets precision: the right camera settings, the right edit, the right line of code. Now I bring that same mindset to the factory floor. My camera background gives me a natural eye for machine vision, and my design work helps me build HMI screens that operators can read at a glance. Whether through a lens, a website, or a robot cell, my mission is the same: turn complex ideas into something people can see, understand, and trust.</p>
               </div>
             </div>
             <div className="mission-image">

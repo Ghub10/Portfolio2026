@@ -1,9 +1,9 @@
-import redStar from '../assets/IM/redstartransportation copy.png'
+import redStar from '../assets/thumbs/redstart-thumb.png'
 import webProject from '../assets/IM/iStock-1181696848 copy 2.jpg'
-import chays from '../assets/IM/chaysalterations copy.png'
+import chays from '../assets/thumbs/chays-thumb.png'
 import restaurantMenu from '../assets/Restaurant Menu.png'
 import businessCard2026 from '../assets/BusinessCard2026.png'
-import cdlThumbnail from '../assets/cdl_thumbnail.png'
+import cdlThumbnail from '../assets/thumbs/cdl-thumb.png'
 import emailAssistant from '../assets/email-assistant-thumbnail.png'
 
 import sanFrancisco from '../assets/TRA/San Francisco copy.png'
@@ -39,6 +39,11 @@ import kiss from '../assets/TRA/Kiss copy.png'
 
 import thumbWebDev from '../assets/Thumbnails copy/WebDevelopmentThumbnail.png'
 import thumbFitness from '../assets/Thumbnails copy/Fitness.png'
+import thumbRedneckMud from '../assets/thumb.png'
+import thumbWesterner from '../assets/westerner1.png'
+import thumbRedstar from '../assets/Redstar1.png'
+import thumbBillLucy from '../assets/bill&lucy.png'
+import thumbChelyseJosh from '../assets/chelisee&Josh.png'
 import thumbAfterFx from '../assets/Thumbnails copy/AfterEffectsThumbnail.png'
 import thumbDance from '../assets/Thumbnails copy/DanceThumbnail.png'
 
@@ -213,11 +218,11 @@ export const fallbackVideos = [
   { id: 2, title: 'Fitness', vimeo_id: '523344163', image_url: thumbFitness },
   { id: 3, title: 'After Effects', vimeo_id: '552132752', image_url: thumbAfterFx },
   { id: 4, title: 'Dance', vimeo_id: '520780833', image_url: thumbDance },
-  { id: 5, title: 'Redneck Mud', vimeo_id: '1096817983', image_url: null },
-  { id: 6, title: 'Red Star Transportation', vimeo_id: '454437639', image_url: null },
-  { id: 7, title: 'Westerner', vimeo_id: '549420092', image_url: null },
-  { id: 8, title: 'Wedding — Bill & Lucy', vimeo_id: '562590545', image_url: null },
-  { id: 9, title: 'Wedding — Chelyse & Josh', vimeo_id: '562597775', image_url: null },
+  { id: 5, title: 'Redneck Mud', vimeo_id: '1096817983', image_url: thumbRedneckMud },
+  { id: 6, title: 'Red Star Transportation', vimeo_id: '454437639', image_url: thumbRedstar },
+  { id: 7, title: 'Westerner', vimeo_id: '549420092', image_url: thumbWesterner },
+  { id: 8, title: 'Bill & Lucy', vimeo_id: '562590545', image_url: thumbBillLucy },
+  { id: 9, title: 'Chelyse & Josh', vimeo_id: '562597775', image_url: thumbChelyseJosh },
 ]
 
 export const fallbackConsulting = [
