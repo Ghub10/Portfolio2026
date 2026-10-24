@@ -500,7 +500,7 @@ function App() {
                 </div>
                 <div className="timeline-item">
                   <div className="timeline-content">
-                    <h4>Senior Account Manager</h4>
+                    <h4>Roth IRA Specialist</h4>
                     <p className="timeline-meta">Discover Card / 2012 - 2014</p>
                     <p className="timeline-description">
                       Managed accounts payable and receivables as part of strategic back office initiative.
