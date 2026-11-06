@@ -1,6 +1,6 @@
 import redStar from '../assets/thumbs/redstart-thumb.png'
-import webProject from '../assets/IM/iStock-1181696848 copy 2.jpg'
 import chays from '../assets/thumbs/chays-thumb.png'
+import mpowerU from '../assets/conimages/MPowerUHero.jpg'
 import restaurantMenu from '../assets/Restaurant Menu.png'
 import businessCard2026 from '../assets/BusinessCard2026.png'
 import cdlThumbnail from '../assets/thumbs/cdl-thumb.png'
@@ -108,6 +108,21 @@ export const fallbackProjects = [
     previewUrl: null,
   },
   {
+    id: 8,
+    title: 'MPowerU',
+    image_url: mpowerU,
+    external_url: 'https://mpoweru.sirnetz.com',
+    featured: false,
+    description: 'WooCommerce online store for a healthy snacks brand.',
+    role: 'Lead developer and designer',
+    result: '',
+    technologies: ['PHP', 'JavaScript', 'HTML', 'CSS', 'Sass'],
+    links: [
+      { label: 'Live site', url: 'https://mpoweru.sirnetz.com', type: 'site' },
+    ],
+    previewType: null,
+  },
+  {
     id: 3,
     title: "Chay's Alterations",
     image_url: chays,
@@ -163,19 +178,6 @@ export const fallbackProjects = [
     links: [
       { label: 'Live demo', url: 'https://mailassist-ai.vercel.app', type: 'demo' },
     ],
-    previewType: null,
-  },
-  {
-    id: 7,
-    title: 'Web Project',
-    image_url: webProject,
-    external_url: null,
-    featured: false,
-    description: 'Web development portfolio project.',
-    role: 'Developer',
-    result: '',
-    technologies: ['React', 'CSS'],
-    links: [],
     previewType: null,
   },
 ]
