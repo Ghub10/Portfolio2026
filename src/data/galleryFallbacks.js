@@ -126,13 +126,15 @@ export const fallbackProjects = [
     id: 3,
     title: "Chay's Alterations",
     image_url: chays,
-    external_url: null,
+    external_url: 'https://chaysalterations.com',
     featured: false,
     description: 'Custom alterations and tailoring service website.',
     role: 'Full-stack developer and designer',
     result: '',
-    technologies: ['React', 'CSS'],
-    links: [],
+    technologies: ['HTML', 'CSS', 'JavaScript'],
+    links: [
+      { label: 'Live site', url: 'https://chaysalterations.com', type: 'site' },
+    ],
     previewType: null,
   },
   {
