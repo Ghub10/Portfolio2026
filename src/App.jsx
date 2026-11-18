@@ -411,7 +411,7 @@ function App() {
                 Eventually, all those threads led me to automation. I trained in Robotics and Automation Technology, programming Allen-Bradley PLCs in Studio 5000, operating FANUC robots, and learning servo systems, machine vision, networking, and HMI design. Writing code taught me logic. Leading a business taught me why efficiency and reliability matter. Automation is where the two come together.
               </p>
               <p>
-                Today, I work as an Automation Technician and Web Developer, helping manufacturers run smarter, one system at a time.
+                Today, I&apos;m training as an Automation Technician and building web tools, so I can help manufacturers run smarter, one system at a time.
               </p>
             </div>
           </div>
@@ -490,7 +490,7 @@ function App() {
                     <h4>Transportation Director – Information Technology</h4>
                     <p className="timeline-meta">Park City School District – Park City, UT / 05/2025 – 10/2026</p>
                     <p className="timeline-description">
-                      Leading transportation operations and technology initiatives for the district.
+                      Led transportation operations and technology initiatives for the district.
                     </p>
                   </div>
                 </div>
