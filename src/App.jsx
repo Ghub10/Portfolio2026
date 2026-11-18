@@ -28,6 +28,17 @@ import pricingImage from './assets/pricingimage copy.png'
 import { useGalleryItems } from './hooks/useGalleryItems'
 import { fallbackProjects, fallbackPhotos, fallbackVideos } from './data/galleryFallbacks'
 
+const skillGroups = [
+  {
+    title: 'Web Development',
+    skills: ['React', 'JavaScript', 'HTML', 'CSS/SCSS', 'Sass', 'Bootstrap', 'PHP', 'Advanced Custom Field', 'Responsive Design', 'AI'],
+  },
+  {
+    title: 'Industrial Automation',
+    skills: ['Allen-Bradley PLCs', 'Studio 5000', 'PLC Programming', 'FANUC Robots', 'HMI Design', 'Machine Vision', 'Industrial Networking'],
+  },
+]
+
 function App() {
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -223,7 +234,7 @@ function App() {
         <div className="hero-container">
           <div className="hero-content">
             <div className="hero-text">
-              <h2 className="hero-subtitle">Hi I'm an AI Engineer & Full-Stack Developer</h2>
+              <h2 className="hero-subtitle">Automation Technician & Web Developer</h2>
               <h1 className="hero-title">
                 {typewriterText || 'Designer'}<span className="cursor-blink">|</span>
               </h1>
@@ -303,9 +314,9 @@ function App() {
                     </div>
                   )}
 
-                  {project.links && project.links.length > 0 && (
+                  {project.links && project.links.some((link) => link.url) && (
                     <div className="project-links">
-                      {project.links.map((link, idx) => (
+                      {project.links.filter((link) => link.url).map((link, idx) => (
                         <a
                           key={idx}
                           href={link.url}
@@ -400,7 +411,7 @@ function App() {
                 Eventually, all those threads led me to automation. I trained in Robotics and Automation Technology, programming Allen-Bradley PLCs in Studio 5000, operating FANUC robots, and learning servo systems, machine vision, networking, and HMI design. Writing code taught me logic. Leading a business taught me why efficiency and reliability matter. Automation is where the two come together.
               </p>
               <p>
-                Today, I work as an AI Engineer and Control Systems Technician, helping manufacturers run smarter, one system at a time.
+                Today, I work as an Automation Technician and Web Developer, helping manufacturers run smarter, one system at a time.
               </p>
             </div>
           </div>
@@ -428,6 +439,18 @@ function App() {
             <div className="resume-column">
               <h3 className="resume-column-title">My Education</h3>
               <div className="timeline">
+                <div className="timeline-item">
+                  <div className="timeline-content">
+                    <h4>Automated Manufacturing Certificate</h4>
+                    <p className="timeline-meta">Expected April 2027</p>
+                  </div>
+                </div>
+                <div className="timeline-item">
+                  <div className="timeline-content">
+                    <h4>Robotics and Automation Technology</h4>
+                    <p className="timeline-meta">Full-time student / 2026 – Present</p>
+                  </div>
+                </div>
                 <div className="timeline-item">
                   <div className="timeline-content">
                     <h4>Web & Graphic Design Certificate 2020 (900-Hour Program)</h4>
@@ -465,7 +488,7 @@ function App() {
                 <div className="timeline-item">
                   <div className="timeline-content">
                     <h4>Transportation Director – Information Technology</h4>
-                    <p className="timeline-meta">Park City School District – Park City, UT / 05/2025 – Present</p>
+                    <p className="timeline-meta">Park City School District – Park City, UT / 05/2025 – 10/2026</p>
                     <p className="timeline-description">
                       Leading transportation operations and technology initiatives for the district.
                     </p>
@@ -503,7 +526,7 @@ function App() {
                     <h4>Roth IRA Specialist</h4>
                     <p className="timeline-meta">Discover Card / 2012 - 2014</p>
                     <p className="timeline-description">
-                      Managed accounts payable and receivables as part of strategic back office initiative.
+                      Helped customers open and manage Roth IRA accounts, answering questions about retirement savings options.
                     </p>
                   </div>
                 </div>
@@ -511,163 +534,20 @@ function App() {
             </div>
           </div>
 
-          {/* Skills with Progress Bars */}
+          {/* Skills grouped by area */}
           <div className="resume-skills">
             <h3 className="resume-column-title">My Skills</h3>
-            <div className="skills-progress-grid">
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">React</span>
-                  <span className="skill-percentage">85%</span>
+            <div className="skill-groups">
+              {skillGroups.map((group) => (
+                <div className="skill-group" key={group.title}>
+                  <h4 className="skill-group-title">{group.title}</h4>
+                  <div className="skill-tags">
+                    {group.skills.map((skill) => (
+                      <span className="skill-tag" key={skill}>{skill}</span>
+                    ))}
+                  </div>
                 </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '85%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">JavaScript</span>
-                  <span className="skill-percentage">88%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '88%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">CSS/SCSS</span>
-                  <span className="skill-percentage">90%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '90%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">PHP</span>
-                  <span className="skill-percentage">75%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '75%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">Responsive Design</span>
-                  <span className="skill-percentage">92%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '92%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">Advanced Custom Field</span>
-                  <span className="skill-percentage">80%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '80%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">HTML</span>
-                  <span className="skill-percentage">95%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '95%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">AI</span>
-                  <span className="skill-percentage">70%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '70%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">Allen-Bradley PLCs</span>
-                  <span className="skill-percentage">80%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '80%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">Studio 5000</span>
-                  <span className="skill-percentage">78%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '78%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">FANUC Robots</span>
-                  <span className="skill-percentage">75%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '75%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">Bootstrap</span>
-                  <span className="skill-percentage">90%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '90%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">Sass</span>
-                  <span className="skill-percentage">85%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '85%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">PLC Programming</span>
-                  <span className="skill-percentage">80%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '80%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">HMI Design</span>
-                  <span className="skill-percentage">77%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '77%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">Machine Vision</span>
-                  <span className="skill-percentage">75%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '75%' }}></div>
-                </div>
-              </div>
-              <div className="skill-progress-item">
-                <div className="skill-header">
-                  <span className="skill-name">Industrial Networking</span>
-                  <span className="skill-percentage">76%</span>
-                </div>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '76%' }}></div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -747,26 +627,6 @@ function App() {
               Check out my latest projects and contributions on GitHub. I'm always working on 
               new ideas and open to collaboration.
             </p>
-            <div className="github-stats">
-              <div className="stat-card">
-                <h3>Repositories</h3>
-                <svg className="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="40" height="40" aria-hidden="true">
-                  <path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Z"/>
-                </svg>
-              </div>
-              <div className="stat-card">
-                <h3>Contributions</h3>
-                <svg className="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="40" height="40" aria-hidden="true">
-                  <path d="M6 2a.75.75 0 0 1 .696.471L10 10.731l1.304-3.26A.75.75 0 0 1 12 7h3.25a.75.75 0 0 1 0 1.5h-2.742l-1.812 4.528a.75.75 0 0 1-1.392 0L6 4.77 4.696 8.03A.75.75 0 0 1 4 8.5H.75a.75.75 0 0 1 0-1.5h2.742Z"/>
-                </svg>
-              </div>
-              <div className="stat-card">
-                <h3>Languages</h3>
-                <svg className="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="40" height="40" aria-hidden="true">
-                  <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM1.75 1.5a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25ZM5.22 8.53a.75.75 0 0 1-1.06 1.06L1.97 7.4a.75.75 0 0 1 0-1.06L4.16 4.16a.75.75 0 0 1 1.06 1.06L3.31 6.87Zm6.62 0 2.19-2.19a.75.75 0 0 0-1.06-1.06L10.78 7.4a.75.75 0 0 0 0 1.06l2.19 2.19a.75.75 0 0 0 1.06-1.06ZM8.78 4.21a.75.75 0 0 0-1.44.42l1.5 5a.75.75 0 0 0 1.44-.42Z"/>
-                </svg>
-              </div>
-            </div>
             <a 
               href="https://github.com/Ghub10" 
               target="_blank" 
@@ -782,7 +642,7 @@ function App() {
       {/* Contact Section */}
       <section id="contact" className="contact-section">
         <div className="section-container">
-          <h2 className="section-title" data-aos="fade-up" data-aos-duration="1000">Contact Us</h2>
+          <h2 className="section-title" data-aos="fade-up" data-aos-duration="1000">Contact Me</h2>
           <div className="contact-content">
             <div className="contact-info">
               <div className="contact-item">

@@ -1402,51 +1402,35 @@ section {
   margin: 4rem 0;
 }
 
-.skills-progress-grid {
+.skill-groups {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
-.skill-progress-item {
-  margin-bottom: 1.5rem;
-}
-
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.skill-name {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #2c2c2c;
-  font-family: sans-serif;
-}
-
-.skill-percentage {
-  font-size: 0.9rem;
+.skill-group-title {
+  font-size: 1.1rem;
   font-weight: 600;
   color: #2c2c2c;
+  margin: 0 0 1rem;
   font-family: sans-serif;
 }
 
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background: #f0f0f0;
-  border-radius: 4px;
-  overflow: hidden;
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
-  border-radius: 4px;
-  transition: width 0.3s ease;
-  box-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
+.skill-tag {
+  background: #f0f0f0;
+  color: #333;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid #e0e0e0;
+  font-family: sans-serif;
 }
 
 .download-cv-container {
@@ -2006,7 +1990,7 @@ section {
     gap: 3rem;
   }
 
-  .skills-progress-grid {
+  .skill-groups {
     grid-template-columns: 1fr;
   }
 
