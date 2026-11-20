@@ -77,10 +77,10 @@ export const fallbackProjects = [
     image_url: cdlThumbnail,
     external_url: 'https://cdl-drivers.vercel.app',
     featured: true,
-    description: 'A hiring platform that matches CDL drivers with transportation employers, using AI to screen license class and endorsements.',
+    description: 'A hiring platform that matches CDL drivers with transportation employers, filtering by license class and endorsements.',
     role: 'Solo developer: design, frontend, backend',
     result: '',
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Claude API'],
+    technologies: ['React', 'Node.js', 'PostgreSQL'],
     links: [
       { label: 'Live demo', url: 'https://cdl-drivers.vercel.app', type: 'demo' },
     ],
@@ -173,7 +173,7 @@ export const fallbackProjects = [
     description: 'AI-powered email assistant tool for managing communications.',
     role: 'Full-stack developer',
     result: '',
-    technologies: ['React', 'Node.js', 'Claude API'],
+    technologies: ['React', 'Node.js', 'OpenAI API'],
     links: [
       { label: 'Live demo', url: 'https://mailassist-ai.vercel.app', type: 'demo' },
     ],
