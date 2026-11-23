@@ -176,6 +176,7 @@ export const fallbackProjects = [
     technologies: ['React', 'Node.js', 'OpenAI API'],
     links: [
       { label: 'Live demo', url: 'https://mailassist-ai.vercel.app', type: 'demo' },
+      { label: 'GitHub', url: 'https://github.com/Ghub10/mailassist-ai', type: 'github' },
     ],
     previewType: null,
   },
