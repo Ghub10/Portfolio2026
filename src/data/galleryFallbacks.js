@@ -97,7 +97,7 @@ export const fallbackProjects = [
     description: 'Booking and quote site for a Utah charter and school bus company.',
     role: 'Lead developer and brand designer, client work',
     result: '',
-    technologies: ['WordPress', 'PHP', 'ACF'],
+    technologies: ['React', 'WordPress', 'PHP', 'ACF'],
     links: [
       { label: 'Live site', url: 'https://redstartransportation.com/', type: 'site' },
     ],
