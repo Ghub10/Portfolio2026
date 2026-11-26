@@ -263,6 +263,7 @@ function App() {
                   className="hero-image"
                 />
               </div>
+              <p className="hero-name">Alejandro Abonnanzieri</p>
             </div>
           </div>
           <div className="scroll-indicator">
